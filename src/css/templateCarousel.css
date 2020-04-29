@@ -6,9 +6,6 @@
   transition: all 200ms ease;
 }
 
-[data-is-active='no'] {
-}
-
 [data-is-active='yes'] img {
   opacity: 1;
 }

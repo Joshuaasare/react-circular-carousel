@@ -1,10 +1,10 @@
 {
-  "name": "react-360-carousel",
+  "name": "react-circular-carousel",
   "version": "1.0.0",
-  "description": "react-360-carousel",
+  "description": "react-circular-carousel",
   "author": "Joshuaasare",
   "license": "MIT",
-  "repository": "Joshuaasare/react-360-carousel",
+  "repository": "Joshuaasare/react-circular-carousel",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.js",

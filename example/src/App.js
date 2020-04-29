@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 
-import { Carousel } from 'react-360-carousel'
+import { Carousel } from 'react-circular-carousel'
 import { images } from './assets'
-import 'react-360-carousel/dist/index.css'
+import 'react-circular-carousel/dist/index.css'
 import './index.css'
 
 const templateList = [
@@ -76,22 +76,3 @@ const App = () => {
 }
 
 export default App
-
-import React, { Component } from 'react'
-
-import { Carousel } from 'react-360-carousel'
-import 'react-360-carousel/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return (
-      <Carousel height={25} width={25} id={0}>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-        <div>1</div>
-      </Carousel>
-    )
-  }
-}
