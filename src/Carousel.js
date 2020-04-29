@@ -20,7 +20,7 @@ const SCALE_UNIT = 0.1
 const SHIFT_UNIT = 90
 const BIG_SHIFT_UNIT = 130
 
-class TemplateCarousel extends React.Component<Props, State> {
+class TemplateCarousel extends React.PureComponent<Props, State> {
   allCards: any
 
   nextButton: any
@@ -32,7 +32,9 @@ class TemplateCarousel extends React.Component<Props, State> {
      * 💻 JS INSIDE 🖥
      */
     this.allCards = Array.from(
-      document.getElementsByClassName('template-carousel__template')
+      document.getElementsByClassName(
+        `template-carousel__template-${this.props.id}`
+      )
     )
     this.allCards.forEach((template) =>
       template.addEventListener('click', this.onTemplateClick)
@@ -74,7 +76,7 @@ class TemplateCarousel extends React.Component<Props, State> {
    */
 
   renderTemplateThumbnails = () => {
-    const { height, width, children } = this.props
+    const { height, width, children, id } = this.props
     console.log('props', this.props)
 
     const totalTemplates = children.length
@@ -92,7 +94,7 @@ class TemplateCarousel extends React.Component<Props, State> {
           }}
           height={height}
           width={width}
-          className='template-carousel__template'
+          className={`template-carousel__template-${id}`}
           //   onClick={() => this.props.onSelect(template.id)}
           data-position={-1 * i}
           data-zindex={zIndex}
@@ -110,13 +112,15 @@ class TemplateCarousel extends React.Component<Props, State> {
   }
 
   onTemplateClick = (e: Event, targetCard1 = null, targetCardPos1 = null) => {
+    console.log('template clickded')
     /**
      * a click's direct target is the image it contains,
      * let's get the enclosing div itself
      */
     // $FlowFixMe
     const targetCard =
-      targetCard1 || e.target.closest('.template-carousel__template')
+      targetCard1 ||
+      e.target.closest(`.template-carousel__template-${this.props.id}`)
     const targetCardPos =
       targetCardPos1 || parseInt(targetCard.dataset.position, 10)
 

@@ -21,13 +21,38 @@ const tailorList = [
   { url: images.shoes },
   { url: images.wed },
   { url: images.suit },
+  { url: images.afri },
+  { url: images.shoes },
+  { url: images.wed },
+  { url: images.suit },
+  { url: images.watch },
+  { url: images.afri },
+  { url: images.shoes },
+  { url: images.wed },
+  { url: images.suit },
+  { url: images.watch },
+  { url: images.afri },
+  { url: images.shoes },
+  { url: images.wed },
+  { url: images.suit },
+  { url: images.watch },
+  { url: images.afri },
+  { url: images.shoes },
+  { url: images.wed },
+  { url: images.suit },
+  { url: images.watch },
+  { url: images.afri },
+  { url: images.shoes },
+  { url: images.wed },
+  { url: images.suit },
+  { url: images.watch },
   { url: images.watch }
 ]
 const App = () => {
   return (
     <Fragment>
       <div>
-        <Carousel height={20} width={20}>
+        <Carousel height={20} width={20} id={0}>
           {templateList.map((item, i) => {
             const key = `list-1-${i}`
             return (
@@ -37,7 +62,7 @@ const App = () => {
         </Carousel>
       </div>
       <div>
-        <Carousel height={30} width={30}>
+        <Carousel height={18} width={18} id={1}>
           {tailorList.map((item, i) => {
             const key = `list-2-${i}`
             return (
@@ -51,3 +76,22 @@ const App = () => {
 }
 
 export default App
+
+import React, { Component } from 'react'
+
+import { Carousel } from 'react-360-carousel'
+import 'react-360-carousel/dist/index.css'
+
+class Example extends Component {
+  render() {
+    return (
+      <Carousel height={25} width={25} id={0}>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+      </Carousel>
+    )
+  }
+}
