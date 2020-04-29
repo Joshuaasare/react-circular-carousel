@@ -15,12 +15,20 @@ npm install --save react-360-carousel
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-360-carousel'
+import { Carousel } from 'react-360-carousel'
 import 'react-360-carousel/dist/index.css'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return (
+      <Carousel height={25} width={25} id={0}>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+        <div>1</div>
+      </Carousel>
+    )
   }
 }
 ```
