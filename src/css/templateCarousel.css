@@ -1,0 +1,57 @@
+/* 📌Note: using BEM convention in this css */
+
+.template-carousel {
+}
+
+.template-carousel__template img {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  opacity: 0.3;
+}
+
+[data-is-active='no'] :hover {
+  opacity: 0.7;
+  transform: scale(1.01);
+  transition: all 200ms ease;
+}
+
+[data-is-active='no'] {
+}
+
+[data-is-active='yes'] img {
+  opacity: 1;
+}
+
+.template-carousel__icon {
+  position: absolute;
+  opacity: 0.4;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  pointer-events: none;
+  display: none !important;
+}
+#carousel-prev-btn {
+  left: 30px;
+  display: none;
+}
+#carousel-next-btn {
+  right: 30px;
+  display: none;
+}
+
+/*TAB LANDSCAPE*/
+@media (max-width: 75em) {
+}
+/*TAB PORTRAIT*/
+@media (max-width: 56.25em) {
+}
+
+/*PHONE*/
+@media (max-width: 37.5em) {
+}
+
+/*EXTRA PHONE OPTIMIZATION*/
+@media (max-width: 25em) {
+}
