@@ -1,6 +1,6 @@
 # react-circular-carousel
 
-> react-360-carousel
+> react-cicular-carousel
 
 [![NPM](https://img.shields.io/npm/v/react-circular-carousel.svg)](https://www.npmjs.com/package/react-circular-carousel) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
