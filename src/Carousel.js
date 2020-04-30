@@ -77,7 +77,6 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
 
   renderTemplateThumbnails = () => {
     const { height, width, children, id } = this.props
-    console.log('props', this.props)
 
     const totalTemplates = children.length
     return children.map((child, i) => {

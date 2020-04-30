@@ -1,6 +1,6 @@
 {
-  "short_name": "react-360-carousel",
-  "name": "react-360-carousel",
+  "short_name": "react-circular-carousel",
+  "name": "react-circular-carousel",
   "icons": [
     {
       "src": "favicon.ico",
