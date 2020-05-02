@@ -1,2 +1,7 @@
 .section__landing {
 }
+
+.full__size {
+  width: 100%;
+  height: 100%;
+}

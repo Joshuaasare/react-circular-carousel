@@ -51,10 +51,7 @@ export const CarouselItem = styled.div`
   position: absolute;
   top: 5px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
-  border: solid 1px #f0f5f1;
-  border-radius: 4px;
   cursor: pointer;
-  background: #fff;
   height: ${(props) => props.height}px;
   width: ${(props) => props.width}px;
   opacity: 1;

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import 'react-circular-carousel/dist/index.css';
 import './css/app.css';
-import { Landing, Cards } from './components';
+import { Landing, Cards, Images } from './components';
 
 const App = () => {
   return (
@@ -12,6 +12,10 @@ const App = () => {
 
       <section className='section__cards'>
         <Cards />
+      </section>
+
+      <section className='section__images'>
+        <Images />
       </section>
     </Fragment>
   );

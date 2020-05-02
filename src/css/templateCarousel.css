@@ -1,7 +1,6 @@
 /* 📌Note: using BEM convention in this css */
 
 [data-is-active='no'] :hover {
-  opacity: 0.7;
   transform: scale(1.01);
 }
 

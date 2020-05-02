@@ -4,7 +4,7 @@
 }
 
 .landing__text {
-  margin-top: 10rem;
+  margin-top: 7rem;
   padding: 0 2rem 0 2rem;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
 .landing__text--main {
   display: inline-block;
   color: #ffae57;
-  font-size: 5rem;
+  font-size: 4rem;
   font-weight: 800;
   letter-spacing: 2px;
 }
