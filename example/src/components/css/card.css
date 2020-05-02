@@ -9,17 +9,3 @@
   display: flex;
   justify-content: center;
 }
-
-.card__header span {
-  display: inline-block;
-  font-size: 1.7rem;
-  padding: 1rem 0 1rem 0;
-  color: #d7dce2;
-  opacity: 0.7;
-  font-weight: 600;
-}
-
-.card__item {
-  height: 100%;
-  width: 100%;
-}

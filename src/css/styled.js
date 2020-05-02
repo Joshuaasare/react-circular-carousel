@@ -49,12 +49,13 @@ export const Carousel = styled.div`
 
 export const CarouselItem = styled.div`
   position: absolute;
-  top: 5px;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  top: 0;
   cursor: pointer;
   height: ${(props) => props.height}px;
   width: ${(props) => props.width}px;
   opacity: 1;
+  outline: none;
 
   @media (max-width: 56.25em) {
     max-width: 250px;
