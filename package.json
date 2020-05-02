@@ -55,7 +55,6 @@
     "dist"
   ],
   "dependencies": {
-    "react-scripts": "^3.4.1",
     "styled-components": "^5.1.0",
     "prop-types": "^15.7.2"
   }
