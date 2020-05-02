@@ -3,7 +3,6 @@
 [data-is-active='no'] :hover {
   opacity: 0.7;
   transform: scale(1.01);
-  transition: all 200ms ease;
 }
 
 [data-type='icon'] {

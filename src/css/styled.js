@@ -3,51 +3,46 @@ import styled from 'styled-components';
 export const Carousel = styled.div`
   position: relative;
   overflow: hidden;
-  height: ${(props) => props.height + 2}rem;
-  padding-left: calc(50% - ${(props) => props.width / 2 + 5.5}rem);
+  height: ${(props) => props.height + 2}px;
+  padding-left: calc(50% - ${(props) => props.width / 2 + 85}px);
   top: 0;
   @media (max-width: 56.25em) {
-    max-height: 26rem;
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 25 ? 25 / 2 + 5.5 : props.width / 2 + 5.5}rem
+          props.width > 250 ? 250 / 2 + 85 : props.width / 2 + 85}px
     );
   }
 
   @media (max-width: 37.5em) {
-    max-height: 22rem;
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 20 ? 20 / 2 + 5.5 : props.width / 2 + 5.5}rem
+          props.width > 200 ? 200 / 2 + 85 : props.width / 2 + 85}px
     );
   }
 
   @media (max-width: 31.25em) {
-    max-height: 16rem;
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 15 ? 15 / 2 + 5.5 : props.width / 2 + 5.5}rem
+          props.width > 150 ? 150 / 2 + 85 : props.width / 2 + 85}px
     );
   }
 
   @media (max-width: 25em) {
-    max-height: 13rem;
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 15 ? 12 / 2 + 7.5 : props.width / 2 + 5.5}rem
+          props.width > 120 ? 120 / 2 + 85 : props.width / 2 + 85}px
     );
   }
 
   @media (max-width: 21.875em) {
-    max-height: 11rem;
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 10 ? 10 / 2 + 7.5 : props.width / 2 + 5.5}rem
+          props.width > 100 ? 100 / 2 + 85 : props.width / 2 + 85}px
     );
   }
 `;
@@ -59,36 +54,39 @@ export const CarouselItem = styled.div`
   border: solid 1px #f0f5f1;
   border-radius: 4px;
   cursor: pointer;
-  transition: all 300ms ease;
   background: #fff;
-  height: ${(props) => props.height}rem;
-  width: ${(props) => props.width}rem;
+  height: ${(props) => props.height}px;
+  width: ${(props) => props.width}px;
   opacity: 1;
-  display: inline-flex;
 
   @media (max-width: 56.25em) {
-    max-height: 25rem;
-    max-width: 25rem;
+    max-width: 250px;
+    height: ${(props) =>
+      props.width > 250 ? (250 / props.width) * props.height : props.height}px;
   }
 
   @media (max-width: 37.5em) {
-    max-height: 20rem;
-    max-width: 20rem;
+    max-width: 200px;
+    height: ${(props) =>
+      props.width > 200 ? (200 / props.width) * props.height : props.height}px;
   }
 
   @media (max-width: 31.25em) {
-    max-height: 15rem;
-    max-width: 15rem;
+    max-width: 150px;
+    height: ${(props) =>
+      props.width > 150 ? (150 / props.width) * props.height : props.height}px;
   }
 
   @media (max-width: 25em) {
-    max-height: 12rem;
-    max-width: 12rem;
+    max-width: 120px;
+    height: ${(props) =>
+      props.width > 120 ? (120 / props.width) * props.height : props.height}px;
   }
 
   @media (max-width: 21.875em) {
-    max-height: 10rem;
-    max-width: 10rem;
+    max-width: 100px;
+    height: ${(props) =>
+      props.width > 100 ? (100 / props.width) * props.height : props.height}px;
   }
 `;
 

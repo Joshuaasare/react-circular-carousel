@@ -6,13 +6,14 @@
 
 import React from 'react';
 import './css/templateCarousel.css';
-import { Carousel, CarouselItem, BackIcon, ForwardIcon } from './css/styled';
+import { Carousel, CarouselItem } from './css/styled';
 import iconPaths from './selection.json'; // the file exported from IcoMoon
 
 type Props = {
-  list: Array<>,
   height: number,
-  width: number
+  width: number,
+  transition?: string,
+  duration?: number
 };
 
 type State = {};
@@ -27,6 +28,11 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
   nextButton: any;
 
   prevButton: any;
+
+  static defaultProps = {
+    transition: 'ease',
+    duration: 300
+  };
 
   componentDidMount() {
     /**
@@ -66,6 +72,24 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
     );
   }
 
+  runAutoPlay = (activeCardPosition) => {
+    if (this.props.autoPlay) {
+      let cards = activeCardPosition;
+
+      setInterval(() => {
+        if (cards < this.allCards.length - 1) {
+          console.log('move-right');
+          cards++;
+          this.onIconClick(-1);
+        } else if (this.props.infinite) {
+          console.log('move-left');
+          this.onIconClick(cards);
+          cards = 0;
+        }
+      }, 1000);
+    }
+  };
+
   getIconPath = (iconName) => {
     const Icon = iconPaths.icons.find(
       (icon) => icon.properties.name === iconName
@@ -88,7 +112,7 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
    */
 
   renderTemplateThumbnails = () => {
-    const { height, width, children, id } = this.props;
+    const { height, width, children, id, transition, duration } = this.props;
 
     const totalTemplates = children.length;
     return children.map((child, i) => {
@@ -101,7 +125,8 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
           key={parseInt(i, 10)}
           style={{
             transform: `scale(${scale}) translateX(${xAxis}px)`,
-            zIndex
+            zIndex,
+            transition: `all ${this.renderTransition(transition)} ${duration}ms`
           }}
           height={height}
           width={width}
@@ -120,6 +145,24 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
         </CarouselItem>
       );
     });
+  };
+
+  renderTransition = (transition) => {
+    switch (transition) {
+      case 'ease':
+        return 'ease';
+
+      case 'slide':
+        return 'slide';
+
+      case 'bounce':
+        return 'cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+
+      case 'easeInOutBack':
+        return 'cubic-bezier(0.68, -0.6, 0.32, 1.6)';
+      default:
+        return transition;
+    }
   };
 
   onIconClick = (position) => {
