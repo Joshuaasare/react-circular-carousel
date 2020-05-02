@@ -4,28 +4,29 @@
  * @flow
  */
 
-import React from 'react'
-import './css/templateCarousel.css'
-import { Carousel, CarouselItem } from './css/styled'
+import React from 'react';
+import './css/templateCarousel.css';
+import { Carousel, CarouselItem, BackIcon, ForwardIcon } from './css/styled';
+import iconPaths from './selection.json'; // the file exported from IcoMoon
 
 type Props = {
   list: Array<>,
   height: number,
   width: number
-}
+};
 
-type State = {}
+type State = {};
 
-const SCALE_UNIT = 0.1
-const SHIFT_UNIT = 90
-const BIG_SHIFT_UNIT = 130
+const SCALE_UNIT = 0.1;
+const SHIFT_UNIT = 65;
+const BIG_SHIFT_UNIT = 85;
 
 class TemplateCarousel extends React.PureComponent<Props, State> {
-  allCards: any
+  allCards: any;
 
-  nextButton: any
+  nextButton: any;
 
-  prevButton: any
+  prevButton: any;
 
   componentDidMount() {
     /**
@@ -35,18 +36,18 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
       document.getElementsByClassName(
         `template-carousel__template-${this.props.id}`
       )
-    )
+    );
     this.allCards.forEach((template) =>
       template.addEventListener('click', this.onTemplateClick)
-    )
-    this.allCards[0].setAttribute('data-is-active', 'yes')
+    );
+    this.allCards[0].setAttribute('data-is-active', 'yes');
 
-    this.nextButton = document.getElementById('carousel-next-btn')
-    this.prevButton = document.getElementById('carousel-prev-btn')
+    this.nextButton = document.getElementById('carousel-next-btn');
+    this.prevButton = document.getElementById('carousel-prev-btn');
   }
 
   render() {
-    const { height, width } = this.props
+    const { height, width } = this.props;
     return (
       <Carousel
         className='template-carousel'
@@ -56,14 +57,25 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
       >
         {this.renderTemplateThumbnails()}
       </Carousel>
-    )
+    );
   }
 
   componentWillUnmount() {
     this.allCards.forEach((template) =>
       template.removeEventListener('click', this.onTemplateClick)
-    )
+    );
   }
+
+  getIconPath = (iconName) => {
+    const Icon = iconPaths.icons.find(
+      (icon) => icon.properties.name === iconName
+    );
+
+    if (Icon) {
+      return Icon.icon.paths.join(' ');
+    }
+    return null;
+  };
 
   /**
    * Note:
@@ -76,19 +88,19 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
    */
 
   renderTemplateThumbnails = () => {
-    const { height, width, children, id } = this.props
+    const { height, width, children, id } = this.props;
 
-    const totalTemplates = children.length
+    const totalTemplates = children.length;
     return children.map((child, i) => {
-      const zIndex = totalTemplates - i
-      const scale = 1 - i * SCALE_UNIT
-      const xAxis = 90 - i * SHIFT_UNIT
+      const zIndex = totalTemplates - i;
+      const scale = 1 - i * SCALE_UNIT;
+      const xAxis = 90 - i * SHIFT_UNIT;
+
       return (
         <CarouselItem
           key={parseInt(i, 10)}
           style={{
             transform: `scale(${scale}) translateX(${xAxis}px)`,
-            right: 'inherit',
             zIndex
           }}
           height={height}
@@ -106,12 +118,23 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
         >
           {child}
         </CarouselItem>
-      )
-    })
-  }
+      );
+    });
+  };
+
+  onIconClick = (position) => {
+    const activeCard = this.allCards.find(
+      (card) => parseInt(card.dataset.position, 10) === position
+    );
+    activeCard &&
+      this.onTemplateClick(
+        null,
+        activeCard,
+        parseInt(activeCard.dataset.position, 10)
+      );
+  };
 
   onTemplateClick = (e: Event, targetCard1 = null, targetCardPos1 = null) => {
-    console.log('template clickded')
     /**
      * a click's direct target is the image it contains,
      * let's get the enclosing div itself
@@ -119,27 +142,27 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
     // $FlowFixMe
     const targetCard =
       targetCard1 ||
-      e.target.closest(`.template-carousel__template-${this.props.id}`)
+      e.target.closest(`.template-carousel__template-${this.props.id}`);
     const targetCardPos =
-      targetCardPos1 || parseInt(targetCard.dataset.position, 10)
+      targetCardPos1 || parseInt(targetCard.dataset.position, 10);
 
     // if we are shifting the cards right, we start from the first card,
     if (targetCardPos < 0)
       for (let a = 0; a < this.allCards.length; a += 1) {
-        this.allCards[a].setAttribute('data-is-active', 'no')
-        this.moveCard(this.allCards[a], targetCardPos)
+        this.allCards[a].setAttribute('data-is-active', 'no');
+        this.moveCard(this.allCards[a], targetCardPos);
       }
     // if we are shifting the cards left, we start from the last card,
     else if (targetCardPos > 0)
       for (let a = this.allCards.length - 1; a >= 0; a -= 1) {
-        this.allCards[a].setAttribute('data-is-active', 'no')
-        this.moveCard(this.allCards[a], targetCardPos)
+        this.allCards[a].setAttribute('data-is-active', 'no');
+        this.moveCard(this.allCards[a], targetCardPos);
       }
 
-    targetCard.setAttribute('data-is-active', 'yes')
+    targetCard.setAttribute('data-is-active', 'yes');
 
     // show/hide next/prev arrow buttons
-  }
+  };
 
   /**
    * Use the visualization of how the cards move on the screen to understand the explanation below:
@@ -181,10 +204,10 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
      * function to apply final transform to card
      */
     const transform = (newScale: number, newPos: number) => {
-      cardToMove.style.transform = `scale(${newScale}) translateX(${newPos}px)`
-      cardToMove.setAttribute('data-xaxis', newPos)
-      cardToMove.setAttribute('data-scale', newScale)
-    }
+      cardToMove.style.transform = `scale(${newScale}) translateX(${newPos}px)`;
+      cardToMove.setAttribute('data-xaxis', newPos);
+      cardToMove.setAttribute('data-scale', newScale);
+    };
     /**
      * even though we are actually trying to scale by a certain amount,
      * it appears that in js/css we can only set the final scale and not an amount
@@ -201,33 +224,33 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
      */
     const move = (steps: number) => {
       // save the position of the card before the move operation
-      const curCardPos = parseInt(cardToMove.dataset.position, 10)
+      const curCardPos = parseInt(cardToMove.dataset.position, 10);
       return {
         /**
          * when a card is scaled up, its z-index is increased
          */
         scaleUp: () => {
           cardToMove.style.zIndex =
-            parseInt(cardToMove.dataset.zindex, 10) + steps
+            parseInt(cardToMove.dataset.zindex, 10) + steps;
           cardToMove.setAttribute(
             'data-zindex',
             parseInt(cardToMove.dataset.zindex, 10) + steps
-          )
+          );
 
-          return parseFloat(cardToMove.dataset.scale) + steps * SCALE_UNIT
+          return parseFloat(cardToMove.dataset.scale) + steps * SCALE_UNIT;
         },
         /**
          * when a card is scaled down, its z-index is decreased
          */
         scaleDown: () => {
           cardToMove.style.zIndex =
-            parseInt(cardToMove.dataset.zindex, 10) - steps
+            parseInt(cardToMove.dataset.zindex, 10) - steps;
           cardToMove.setAttribute(
             'data-zindex',
             parseInt(cardToMove.dataset.zindex, 10) - steps
-          )
+          );
 
-          return parseFloat(cardToMove.dataset.scale) - steps * SCALE_UNIT
+          return parseFloat(cardToMove.dataset.scale) - steps * SCALE_UNIT;
         },
         moveRight: () => {
           /**
@@ -238,40 +261,40 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
           cardToMove.setAttribute(
             'data-position',
             parseInt(cardToMove.dataset.position, 10) + steps
-          )
+          );
           return (
             parseInt(cardToMove.dataset.xaxis, 10) +
             steps * (curCardPos >= 0 ? BIG_SHIFT_UNIT : SHIFT_UNIT)
-          )
+          );
         },
         moveLeft: () => {
           cardToMove.setAttribute(
             'data-position',
             parseInt(cardToMove.dataset.position, 10) - steps
-          )
+          );
           return (
             parseInt(cardToMove.dataset.xaxis, 10) -
             steps * (curCardPos > 0 ? BIG_SHIFT_UNIT : SHIFT_UNIT)
-          )
+          );
         }
-      }
-    }
+      };
+    };
 
-    const currentPosOfCardToMove = parseInt(cardToMove.dataset.position, 10)
+    const currentPosOfCardToMove = parseInt(cardToMove.dataset.position, 10);
     /**
      * calculate the total number of steps the card will need to move
      * keeping in mind that in certain cases, this will require movement in
      * multiple directions
      */
-    const totalStepsToMove = Math.abs(targetCardPos)
-    let firstDirectionSteps
-    let secondDirectionSteps
+    const totalStepsToMove = Math.abs(targetCardPos);
+    let firstDirectionSteps;
+    let secondDirectionSteps;
     if (Math.abs(currentPosOfCardToMove) >= totalStepsToMove) {
-      firstDirectionSteps = totalStepsToMove
-      secondDirectionSteps = 0
+      firstDirectionSteps = totalStepsToMove;
+      secondDirectionSteps = 0;
     } else {
-      firstDirectionSteps = Math.abs(currentPosOfCardToMove)
-      secondDirectionSteps = totalStepsToMove - firstDirectionSteps
+      firstDirectionSteps = Math.abs(currentPosOfCardToMove);
+      secondDirectionSteps = totalStepsToMove - firstDirectionSteps;
     }
     /**
      * if the target card is in a negative position,
@@ -291,14 +314,14 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
         transform(
           move(firstDirectionSteps).scaleUp(),
           move(firstDirectionSteps).moveRight()
-        )
+        );
         /**
          * **SCALE DOWN, MOVE RIGHT**
          */
         transform(
           move(secondDirectionSteps).scaleDown(),
           move(secondDirectionSteps).moveRight()
-        )
+        );
       } else {
         /**
          * **SCALE DOWN, MOVE RIGHT**
@@ -306,7 +329,7 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
         transform(
           move(totalStepsToMove).scaleDown(),
           move(totalStepsToMove).moveRight()
-        )
+        );
       }
     } else if (targetCardPos > 0) {
       /**
@@ -322,7 +345,7 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
         transform(
           move(totalStepsToMove).scaleDown(),
           move(totalStepsToMove).moveLeft()
-        )
+        );
       } else {
         /**
          * **SCALE UP, MOVE LEFT**
@@ -330,17 +353,17 @@ class TemplateCarousel extends React.PureComponent<Props, State> {
         transform(
           move(firstDirectionSteps).scaleUp(),
           move(firstDirectionSteps).moveLeft()
-        )
+        );
         /**
          * **SCALE DOWN, MOVE LEFT**
          */
         transform(
           move(secondDirectionSteps).scaleDown(),
           move(secondDirectionSteps).moveLeft()
-        )
+        );
       }
     }
-  }
+  };
 }
 
-export default TemplateCarousel
+export default TemplateCarousel;

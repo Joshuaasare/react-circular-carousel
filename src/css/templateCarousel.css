@@ -6,14 +6,35 @@
   transition: all 200ms ease;
 }
 
+[data-type='icon'] {
+  position: absolute;
+  opacity: 0.4;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  cursor: pointer;
+}
+
 [data-is-active='yes'] img {
   opacity: 1;
 }
 
+.template-carousel {
+}
+
+.template-carousel__icon {
+  position: absolute;
+  opacity: 0.4;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 40;
+  cursor: pointer;
+}
+
 #carousel-prev-btn {
   left: 30px;
-  display: none;
 }
+
 #carousel-next-btn {
   right: 30px;
   display: none;
@@ -22,6 +43,7 @@
 /*TAB LANDSCAPE*/
 @media (max-width: 75em) {
 }
+
 /*TAB PORTRAIT*/
 @media (max-width: 56.25em) {
 }
