@@ -1,5 +1,13 @@
 import styled from 'styled-components';
 
+export const maxWidth = {
+  TAB_PORTRAIT: 300,
+  PHONE: 250,
+  MID_PHONE: 230,
+  MINI_PHONE: 200,
+  MICRO_PHONE: 180
+};
+
 export const Carousel = styled.div`
   position: relative;
   overflow: hidden;
@@ -10,11 +18,13 @@ export const Carousel = styled.div`
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 250 ? 250 / 2 + 85 : props.width / 2 + 85}px
+          props.width > maxWidth.TAB_PORTRAIT
+            ? maxWidth.TAB_PORTRAIT / 2 + 85
+            : props.width / 2 + 85}px
     );
     height: ${(props) =>
-      props.width > 250
-        ? (250 / props.width) * props.height + 2
+      props.width > maxWidth.TAB_PORTRAIT
+        ? (maxWidth.TAB_PORTRAIT / props.width) * props.height + 2
         : props.height + 2}px;
   }
 
@@ -22,12 +32,14 @@ export const Carousel = styled.div`
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 200 ? 200 / 2 + 85 : props.width / 2 + 85}px
+          props.width > maxWidth.PHONE
+            ? maxWidth.PHONE / 2 + 85
+            : props.width / 2 + 85}px
     );
 
     height: ${(props) =>
-      props.width > 200
-        ? (200 / props.width) * props.height + 2
+      props.width > maxWidth.PHONE
+        ? (maxWidth.PHONE / props.width) * props.height + 2
         : props.height + 2}px;
   }
 
@@ -35,11 +47,13 @@ export const Carousel = styled.div`
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 150 ? 150 / 2 + 85 : props.width / 2 + 85}px
+          props.width > maxWidth.MID_PHONE
+            ? maxWidth.MID_PHONE / 2 + 85
+            : props.width / 2 + 85}px
     );
     height: ${(props) =>
-      props.width > 150
-        ? (150 / props.width) * props.height + 2
+      props.width > maxWidth.MID_PHONE
+        ? (maxWidth.MID_PHONE / props.width) * props.height + 2
         : props.height + 2}px;
   }
 
@@ -47,11 +61,13 @@ export const Carousel = styled.div`
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 120 ? 120 / 2 + 85 : props.width / 2 + 85}px
+          props.width > maxWidth.MINI_PHONE
+            ? maxWidth.MINI_PHONE / 2 + 85
+            : props.width / 2 + 85}px
     );
     height: ${(props) =>
-      props.width > 120
-        ? (120 / props.width) * props.height + 2
+      props.width > maxWidth.MINI_PHONE
+        ? (maxWidth.MINI_PHONE / props.width) * props.height + 2
         : props.height + 2}px;
   }
 
@@ -59,11 +75,13 @@ export const Carousel = styled.div`
     padding-left: calc(
       50% -
         ${(props) =>
-          props.width > 100 ? 100 / 2 + 85 : props.width / 2 + 85}px
+          props.width > maxWidth.MICRO_PHONE
+            ? maxWidth.MICRO_PHONE / 2 + 85
+            : props.width / 2 + 85}px
     );
     height: ${(props) =>
-      props.width > 100
-        ? (100 / props.width) * props.height + 2
+      props.width > maxWidth.MICRO_PHONE
+        ? (maxWidth.MICRO_PHONE / props.width) * props.height + 2
         : props.height + 2}px;
   }
 `;
@@ -79,33 +97,43 @@ export const CarouselItem = styled.div`
   outline: none;
 
   @media (max-width: 56.25em) {
-    max-width: 250px;
+    max-width: ${maxWidth.TAB_PORTRAIT}px;
     height: ${(props) =>
-      props.width > 250 ? (250 / props.width) * props.height : props.height}px;
+      props.width > maxWidth.TAB_PORTRAIT
+        ? (maxWidth.TAB_PORTRAIT / props.width) * props.height
+        : props.height}px;
   }
 
   @media (max-width: 37.5em) {
-    max-width: 200px;
+    max-width: ${maxWidth.PHONE}px;
     height: ${(props) =>
-      props.width > 200 ? (200 / props.width) * props.height : props.height}px;
+      props.width > maxWidth.PHONE
+        ? (maxWidth.PHONE / props.width) * props.height
+        : props.height}px;
   }
 
   @media (max-width: 31.25em) {
-    max-width: 150px;
+    max-width: ${maxWidth.MID_PHONE}px;
     height: ${(props) =>
-      props.width > 150 ? (150 / props.width) * props.height : props.height}px;
+      props.width > maxWidth.MID_PHONE
+        ? (maxWidth.MID_PHONE / props.width) * props.height
+        : props.height}px;
   }
 
   @media (max-width: 25em) {
-    max-width: 120px;
+    max-width: ${maxWidth.MINI_PHONE}px;
     height: ${(props) =>
-      props.width > 120 ? (120 / props.width) * props.height : props.height}px;
+      props.width > maxWidth.MINI_PHONE
+        ? (maxWidth.MINI_PHONE / props.width) * props.height
+        : props.height}px;
   }
 
   @media (max-width: 21.875em) {
-    max-width: 100px;
+    max-width: ${maxWidth.MICRO_PHONE}px;
     height: ${(props) =>
-      props.width > 100 ? (100 / props.width) * props.height : props.height}px;
+      props.width > maxWidth.MICRO_PHONE
+        ? (maxWidth.MICRO_PHONE / props.width) * props.height
+        : props.height}px;
   }
 `;
 
