@@ -12,6 +12,10 @@ export const Carousel = styled.div`
         ${(props) =>
           props.width > 250 ? 250 / 2 + 85 : props.width / 2 + 85}px
     );
+    height: ${(props) =>
+      props.width > 250
+        ? (250 / props.width) * props.height + 2
+        : props.height + 2}px;
   }
 
   @media (max-width: 37.5em) {
@@ -20,6 +24,11 @@ export const Carousel = styled.div`
         ${(props) =>
           props.width > 200 ? 200 / 2 + 85 : props.width / 2 + 85}px
     );
+
+    height: ${(props) =>
+      props.width > 200
+        ? (200 / props.width) * props.height + 2
+        : props.height + 2}px;
   }
 
   @media (max-width: 31.25em) {
@@ -28,6 +37,10 @@ export const Carousel = styled.div`
         ${(props) =>
           props.width > 150 ? 150 / 2 + 85 : props.width / 2 + 85}px
     );
+    height: ${(props) =>
+      props.width > 150
+        ? (150 / props.width) * props.height + 2
+        : props.height + 2}px;
   }
 
   @media (max-width: 25em) {
@@ -36,6 +49,10 @@ export const Carousel = styled.div`
         ${(props) =>
           props.width > 120 ? 120 / 2 + 85 : props.width / 2 + 85}px
     );
+    height: ${(props) =>
+      props.width > 120
+        ? (120 / props.width) * props.height + 2
+        : props.height + 2}px;
   }
 
   @media (max-width: 21.875em) {
@@ -44,6 +61,10 @@ export const Carousel = styled.div`
         ${(props) =>
           props.width > 100 ? 100 / 2 + 85 : props.width / 2 + 85}px
     );
+    height: ${(props) =>
+      props.width > 100
+        ? (100 / props.width) * props.height + 2
+        : props.height + 2}px;
   }
 `;
 
